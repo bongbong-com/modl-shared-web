@@ -11,10 +11,8 @@ export interface ApiResponse<T = any> {
 
 // Admin & Staff
 export interface AdminUser {
-  _id: any;
+  _id: string;
   email: string;
-  username: string;
-  role: 'Super Admin' | 'Admin' | 'Moderator' | 'Helper';
   loggedInIps: string[];
   lastActivityAt: Date;
   createdAt: Date;
@@ -47,6 +45,7 @@ export interface EmailCode {
   createdAt: Date;
 }
 
+// @ts-ignore
 declare module 'express-session' {
   interface SessionData {
     adminId?: string;

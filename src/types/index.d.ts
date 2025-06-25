@@ -1,5 +1,4 @@
-import { Connection } from "mongoose";
-
+import { Connection } from 'mongoose';
 export interface ApiResponse<T = any> {
     success: boolean;
     data?: T;
@@ -10,8 +9,6 @@ export interface ApiResponse<T = any> {
 export interface AdminUser {
     _id: string;
     email: string;
-    username: string;
-    role: 'Super Admin' | 'Admin' | 'Moderator' | 'Helper';
     loggedInIps: string[];
     lastActivityAt: Date;
     createdAt: Date;
@@ -41,6 +38,7 @@ export interface EmailCode {
 }
 declare module 'express-session' {
     interface SessionData {
+        adminId?: string;
         userId?: string;
         email?: string;
         username?: string;

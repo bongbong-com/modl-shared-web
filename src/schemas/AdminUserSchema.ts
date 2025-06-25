@@ -2,8 +2,6 @@ import { Schema, model, Document } from 'mongoose';
 
 export interface IAdminUser extends Document {
   email: string;
-  username: string;
-  role: 'Super Admin' | 'Admin' | 'Moderator' | 'Helper';
   loggedInIps: string[];
   lastActivityAt: Date;
   createdAt: Date;
@@ -17,8 +15,6 @@ const AdminUserSchema = new Schema<IAdminUser>({
     lowercase: true,
     trim: true
   },
-  username: { type: String, required: true, unique: true },
-  role: { type: String, required: true, enum: ['Super Admin', 'Admin', 'Moderator', 'Helper'], default: 'Admin' },
   loggedInIps: [{
     type: String,
     trim: true
