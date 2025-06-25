@@ -7,7 +7,7 @@ export interface IAdminUser extends Document {
   createdAt: Date;
 }
 
-const AdminUserSchema = new Schema<IAdminUser>({
+export const AdminUserSchema = new Schema<IAdminUser>({
   email: {
     type: String,
     required: true,

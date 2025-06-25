@@ -46,7 +46,7 @@ export interface ISystemConfig extends Document {
   };
 }
 
-const SystemConfigSchema = new Schema<ISystemConfig>({
+export const SystemConfigSchema = new Schema<ISystemConfig>({
   configId: { type: String, required: true, unique: true, default: 'main_config' },
   general: { type: Object, required: true },
   security: { type: Object, required: true },

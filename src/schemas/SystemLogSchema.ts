@@ -18,7 +18,7 @@ export interface ISystemLog extends Document {
   tags?: string[];
 }
 
-const SystemLogSchema = new Schema<ISystemLog>({
+export const SystemLogSchema = new Schema<ISystemLog>({
   level: { type: String, required: true, enum: ['info', 'warning', 'error', 'critical'], index: true },
   message: { type: String, required: true, maxlength: 2000 },
   source: { type: String, required: true, index: true },

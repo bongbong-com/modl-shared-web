@@ -8,7 +8,7 @@ export interface IEmailCode extends Document {
   createdAt: Date;
 }
 
-const EmailCodeSchema = new Schema<IEmailCode>({
+export const EmailCodeSchema = new Schema<IEmailCode>({
   email: {
     type: String,
     required: true,
