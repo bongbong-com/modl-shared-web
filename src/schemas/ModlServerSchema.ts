@@ -1,4 +1,4 @@
-import { Schema, model, Document, models } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 // This combines fields from both modl-admin and modl-panel definitions.
 export interface IModlServer extends Document {
@@ -88,4 +88,4 @@ ModlServerSchema.index({ plan: 1, subscription_status: 1 });
 ModlServerSchema.index({ provisioningStatus: 1, emailVerified: 1 });
 ModlServerSchema.index({ serverName: 'text', customDomain: 'text', adminEmail: 'text' });
 
-export const ModlServerModel = models.ModlServer || model<IModlServer>('ModlServer', ModlServerSchema); 
+export const ModlServerModel = mongoose.models.ModlServer || model<IModlServer>('ModlServer', ModlServerSchema); 

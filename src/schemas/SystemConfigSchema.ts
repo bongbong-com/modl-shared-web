@@ -1,4 +1,4 @@
-import { Schema, model, Document, models } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ISystemConfig extends Document {
   configId: string;
@@ -58,4 +58,4 @@ const SystemConfigSchema = new Schema<ISystemConfig>({
   collection: 'system_configs'
 });
 
-export const SystemConfigModel = models.SystemConfig || model<ISystemConfig>('SystemConfig', SystemConfigSchema); 
+export const SystemConfigModel = mongoose.models.SystemConfig || model<ISystemConfig>('SystemConfig', SystemConfigSchema); 

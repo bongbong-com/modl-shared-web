@@ -1,4 +1,4 @@
-import { Schema, model, Document, models } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface IEmailCode extends Document {
   email: string;
@@ -43,4 +43,4 @@ const EmailCodeSchema = new Schema<IEmailCode>({
 EmailCodeSchema.index({ email: 1, used: 1 });
 EmailCodeSchema.index({ code: 1, used: 1 });
 
-export const EmailCodeModel = models.EmailCode || model<IEmailCode>('EmailCode', EmailCodeSchema); 
+export const EmailCodeModel = mongoose.models.EmailCode || model<IEmailCode>('EmailCode', EmailCodeSchema); 

@@ -1,4 +1,4 @@
-import { Schema, model, Document, models } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface IAdminUser extends Document {
   email: string;
@@ -34,4 +34,4 @@ const AdminUserSchema = new Schema<IAdminUser>({
 
 AdminUserSchema.index({ lastActivityAt: -1 });
 
-export const AdminUserModel = models.AdminUser || model<IAdminUser>('AdminUser', AdminUserSchema); 
+export const AdminUserModel = mongoose.models.AdminUser || model<IAdminUser>('AdminUser', AdminUserSchema); 

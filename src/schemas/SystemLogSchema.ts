@@ -1,4 +1,4 @@
-import { Schema, model, Document, models } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ISystemLog extends Document {
   level: 'info' | 'warning' | 'error' | 'critical';
@@ -48,4 +48,4 @@ SystemLogSchema.index({ message: 'text', source: 'text', category: 'text' });
 // TTL index to automatically delete old logs after 90 days
 SystemLogSchema.index({ timestamp: 1 }, { expireAfterSeconds: 90 * 24 * 60 * 60 });
 
-export const SystemLogModel = models.SystemLog || model<ISystemLog>('SystemLog', SystemLogSchema); 
+export const SystemLogModel = mongoose.models.SystemLog || model<ISystemLog>('SystemLog', SystemLogSchema); 
