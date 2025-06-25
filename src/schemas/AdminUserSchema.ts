@@ -32,6 +32,4 @@ export const AdminUserSchema = new Schema<IAdminUser>({
   collection: 'admin_users'
 });
 
-AdminUserSchema.index({ lastActivityAt: -1 });
-
-export const AdminUserModel = mongoose.models.AdminUser || model<IAdminUser>('AdminUser', AdminUserSchema); 
+AdminUserSchema.index({ lastActivityAt: -1 }); 

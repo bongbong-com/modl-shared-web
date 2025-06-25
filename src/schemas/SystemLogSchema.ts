@@ -46,6 +46,4 @@ SystemLogSchema.index({ resolved: 1, level: 1, timestamp: -1 });
 SystemLogSchema.index({ message: 'text', source: 'text', category: 'text' });
 
 // TTL index to automatically delete old logs after 90 days
-SystemLogSchema.index({ timestamp: 1 }, { expireAfterSeconds: 90 * 24 * 60 * 60 });
-
-export const SystemLogModel = mongoose.models.SystemLog || model<ISystemLog>('SystemLog', SystemLogSchema); 
+SystemLogSchema.index({ timestamp: 1 }, { expireAfterSeconds: 90 * 24 * 60 * 60 }); 

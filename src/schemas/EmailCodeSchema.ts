@@ -41,6 +41,4 @@ export const EmailCodeSchema = new Schema<IEmailCode>({
 });
 
 EmailCodeSchema.index({ email: 1, used: 1 });
-EmailCodeSchema.index({ code: 1, used: 1 });
-
-export const EmailCodeModel = mongoose.models.EmailCode || model<IEmailCode>('EmailCode', EmailCodeSchema); 
+EmailCodeSchema.index({ code: 1, used: 1 }); 
