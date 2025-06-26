@@ -45,6 +45,16 @@
         "types": "./dist/lib/*.d.ts",
         "default": "./dist/lib/*.js"
       }
+    },
+    "./schemas/*": {
+      "import": {
+        "types": "./dist/schemas/*.d.ts",
+        "default": "./dist/esm/schemas/*.js"
+      },
+      "require": {
+        "types": "./dist/schemas/*.d.ts",
+        "default": "./dist/schemas/*.js"
+      }
     }
   },
   "scripts": {
