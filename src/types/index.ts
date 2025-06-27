@@ -1,4 +1,5 @@
 import { Types, Connection } from 'mongoose';
+import { IModlServer } from '../schemas/ModlServerSchema';
 
 // Base API Response
 export interface ApiResponse<T = any> {
@@ -68,6 +69,8 @@ declare global {
         role: 'Super Admin' | 'Admin' | 'Moderator' | 'Helper';
       },
       serverDbConnection?: Connection;
+      serverName?: string;
+      modlServer?: IModlServer;
     }
   }
 }
@@ -86,15 +89,35 @@ export interface Player {
 
 
 // Tickets & Appeals
-export interface Ticket {
-  id: string;
+export interface IReply {
+  _id?: any;
+  name: string;
+  content: string;
+  type: string;
+  created: Date;
+  staff?: boolean;
+  avatar?: string;
+  action?: string;
+}
+
+export interface ITicket extends Document {
+  _id: string;
+  tags: string[];
   type: 'bug' | 'player' | 'chat' | 'appeal' | 'staff' | 'support';
+  status: string;
   subject: string;
-  reportedBy: string;
-  date: string;
-  status: 'Unfinished' | 'Open' | 'Closed';
-  priority: 'Critical' | 'Medium' | 'Low' | 'Fixed';
-  locked?: boolean;
+  created: Date;
+  updatedAt: Date;
+  creator: string;
+  creatorUuid: string;
+  reportedPlayer?: string;
+  reportedPlayerUuid?: string;
+  chatMessages?: string[];
+  notes: any[]; // Consider defining a proper INote interface
+  replies: IReply[];
+  locked: boolean;
+  formData: Map<string, any>;
+  data: Map<string, any>;
 }
 
 // Knowledgebase
