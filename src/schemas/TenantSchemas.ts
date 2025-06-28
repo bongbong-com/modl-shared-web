@@ -39,6 +39,7 @@ export const PunishmentSchema = new Schema({
   type_ordinal: { type: Number, required: true },
   modifications: [ModificationSchema],
   notes: [NoteSchema],
+  evidence: [{ type: String }],
   attachedTicketIds: [{ type: String }],
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
 });
