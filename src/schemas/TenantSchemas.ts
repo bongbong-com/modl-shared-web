@@ -35,10 +35,11 @@ export const PunishmentSchema = new Schema({
   id: { type: String, required: true },
   issuerName: { type: String, required: true },
   issued: { type: Date, default: Date.now },
-  started: { type: Date, default: Date.now },
+  started: { type: Date, default: null }, // No default - only set when server acknowledges
   type_ordinal: { type: Number, required: true },
   modifications: [ModificationSchema],
   notes: [NoteSchema],
+  evidence: [{ type: String }],
   attachedTicketIds: [{ type: String }],
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
 });
