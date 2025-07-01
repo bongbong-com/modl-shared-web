@@ -75,7 +75,62 @@ declare global {
   }
 }
 
-// Player
+// Player & Punishments
+export interface IUsername {
+  username: string;
+  date: Date;
+}
+
+export interface INote {
+  text: string;
+  date: Date;
+  issuerName: string;
+  issuerId?: string;
+}
+
+export interface IIPAddress {
+  ipAddress: string;
+  country?: string;
+  region?: string;
+  asn?: string;
+  proxy?: boolean;
+  hosting?: boolean;
+  firstLogin: Date;
+  logins: Date[];
+}
+
+export interface IModification {
+  type: string;
+  issuerName: string;
+  issued: Date;
+  effectiveDuration?: number;
+  reason?: string;
+}
+
+export interface IPunishment {
+  id: string;
+  issuerName: string;
+  issued: Date;
+  started?: Date; // Only set when server acknowledges execution
+  type_ordinal: number;
+  modifications: IModification[];
+  notes: INote[];
+  evidence: string[];
+  attachedTicketIds: string[];
+  data: Map<string, any>;
+}
+
+export interface IPlayer {
+  _id: string;
+  minecraftUuid: string;
+  usernames: IUsername[];
+  notes: INote[];
+  ipList: IIPAddress[];
+  punishments: IPunishment[];
+  pendingNotifications: string[];
+  data: Map<string, any>;
+}
+
 export interface Player {
   _id: string;
   minecraftUuid: string;
