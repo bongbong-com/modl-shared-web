@@ -10,6 +10,11 @@ export interface ISystemConfig extends Document {
     maintenanceMode: boolean;
     maintenanceMessage: string;
   };
+  logging: {
+    pm2LoggingEnabled: boolean;
+    logRetentionDays: number;
+    maxLogSizePerDay: number;
+  };
   security: {
     sessionTimeout: number;
     maxLoginAttempts: number;
@@ -49,6 +54,7 @@ export interface ISystemConfig extends Document {
 export const SystemConfigSchema = new Schema<ISystemConfig>({
   configId: { type: String, required: true, unique: true, default: 'main_config' },
   general: { type: Object, required: true },
+  logging: { type: Object, required: true },
   security: { type: Object, required: true },
   notifications: { type: Object, required: true },
   performance: { type: Object, required: true },
