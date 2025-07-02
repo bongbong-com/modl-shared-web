@@ -22,9 +22,16 @@ export interface IModlServer extends Document {
   // Plan & Billing
   plan: 'free' | 'premium';
   subscription_status: 'active' | 'canceled' | 'past_due' | 'inactive' | 'trialing' | 'incomplete' | 'incomplete_expired' | 'unpaid' | 'paused';
+  current_period_start?: Date;
   current_period_end?: Date;
   stripe_customer_id?: string;
   stripe_subscription_id?: string;
+
+  // Usage Tracking & Billing
+  cdn_usage_current_period?: number; // GB used in current billing period
+  ai_requests_current_period?: number; // AI requests used in current billing period
+  usage_billing_enabled?: boolean; // Whether to charge for overages
+  usage_billing_updated_at?: Date;
 
   // Custom Domain
   customDomain_override?: string;
@@ -60,9 +67,16 @@ export const ModlServerSchema = new Schema<IModlServer>({
 
   plan: { type: String, enum: ['free', 'premium'], default: 'free', index: true },
   subscription_status: { type: String, enum: ['active', 'canceled', 'past_due', 'inactive', 'trialing', 'incomplete', 'incomplete_expired', 'unpaid', 'paused'], default: 'inactive', index: true },
+  current_period_start: { type: Date, sparse: true },
   current_period_end: { type: Date, sparse: true },
   stripe_customer_id: { type: String, unique: true, sparse: true },
   stripe_subscription_id: { type: String, unique: true, sparse: true },
+
+  // Usage Tracking & Billing
+  cdn_usage_current_period: { type: Number, default: 0 },
+  ai_requests_current_period: { type: Number, default: 0 },
+  usage_billing_enabled: { type: Boolean, default: false },
+  usage_billing_updated_at: { type: Date, sparse: true },
   
   customDomain_override: { type: String, unique: true, sparse: true },
   customDomain_status: { type: String, enum: ['pending', 'active', 'error', 'verifying'], sparse: true },
