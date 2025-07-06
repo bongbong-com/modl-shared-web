@@ -60,6 +60,8 @@ export const StaffSchema = new Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   role: { type: String, required: true, enum: ['Super Admin', 'Admin', 'Moderator', 'Helper'] },
+  assignedMinecraftUuid: { type: String, sparse: true, index: true },
+  assignedMinecraftUsername: { type: String, sparse: true },
 }, { timestamps: true });
 
 export const InvitationSchema = new Schema({
