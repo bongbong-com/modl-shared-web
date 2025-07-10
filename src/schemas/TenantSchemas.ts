@@ -89,7 +89,8 @@ export const ReplySchema = new Schema({
   type: { type: String, required: true },
   created: { type: Date, default: Date.now },
   staff: { type: Boolean, default: false },
-  action: { type: String }
+  action: { type: String },
+  attachments: [{ type: mongoose.Schema.Types.Mixed }]
 });
 
 export const TicketSchema = new Schema({

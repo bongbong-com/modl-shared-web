@@ -153,6 +153,7 @@ export interface IReply {
   staff?: boolean;
   avatar?: string;
   action?: string;
+  attachments?: any[];
 }
 
 export interface ITicket extends Document {
