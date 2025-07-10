@@ -19,6 +19,8 @@ export const IpAddressSchema = new Schema({
   country: { type: String },
   region: { type: String },
   asn: { type: String },
+  proxy: { type: Boolean, default: false },
+  hosting: { type: Boolean, default: false },
   firstLogin: { type: Date, default: Date.now },
   logins: [{ type: Date }]
 });
@@ -39,7 +41,7 @@ export const PunishmentSchema = new Schema({
   type_ordinal: { type: Number, required: true },
   modifications: [ModificationSchema],
   notes: [NoteSchema],
-  evidence: [{ type: String }],
+  evidence: [mongoose.Schema.Types.Mixed],
   attachedTicketIds: [{ type: String }],
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
 });
@@ -50,6 +52,7 @@ export const PlayerSchema = new Schema({
   usernames: [UsernameSchema],
   notes: [NoteSchema],
   ipList: [IpAddressSchema],
+  ipAddresses: [IpAddressSchema],
   punishments: [PunishmentSchema],
   pendingNotifications: [{ type: String }],
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
