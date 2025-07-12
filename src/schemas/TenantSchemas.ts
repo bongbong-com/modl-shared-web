@@ -79,7 +79,7 @@ export const StaffSchema = new Schema({
   
   // Ticket subscription tracking
   subscribedTickets: [{
-    ticketId: { type: Schema.Types.ObjectId, required: true },
+    ticketId: { type: String, required: true },
     subscribedAt: { type: Date, default: Date.now },
     lastReadAt: { type: Date },
     active: { type: Boolean, default: true }
