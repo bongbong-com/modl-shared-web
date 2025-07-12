@@ -33,6 +33,17 @@ export const ModificationSchema = new Schema({
   reason: { type: String }
 });
 
+export const EvidenceSchema = new Schema({
+  text: { type: String, required: true },
+  issuerName: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+  type: { type: String, enum: ['text', 'url', 'file'], default: 'text' },
+  fileUrl: { type: String },
+  fileName: { type: String },
+  fileType: { type: String },
+  fileSize: { type: Number }
+});
+
 export const PunishmentSchema = new Schema({
   id: { type: String, required: true },
   issuerName: { type: String, required: true },
@@ -41,7 +52,7 @@ export const PunishmentSchema = new Schema({
   type_ordinal: { type: Number, required: true },
   modifications: [ModificationSchema],
   notes: [NoteSchema],
-  evidence: [mongoose.Schema.Types.Mixed],
+  evidence: [EvidenceSchema],
   attachedTicketIds: [{ type: String }],
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
 });

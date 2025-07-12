@@ -107,6 +107,17 @@ export interface IModification {
   reason?: string;
 }
 
+export interface IEvidence {
+  text: string;
+  issuerName: string;
+  date: Date;
+  type: 'text' | 'url' | 'file';
+  fileUrl?: string;
+  fileName?: string;
+  fileType?: string;
+  fileSize?: number;
+}
+
 export interface IPunishment {
   id: string;
   issuerName: string;
@@ -115,7 +126,7 @@ export interface IPunishment {
   type_ordinal: number;
   modifications: IModification[];
   notes: INote[];
-  evidence: string[];
+  evidence: IEvidence[];
   attachedTicketIds: string[];
   data: Map<string, any>;
 }
