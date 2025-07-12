@@ -76,6 +76,49 @@ export const StaffSchema = new Schema({
   role: { type: String, required: true, enum: ['Super Admin', 'Admin', 'Moderator', 'Helper'] },
   assignedMinecraftUuid: { type: String, sparse: true, index: true },
   assignedMinecraftUsername: { type: String, sparse: true },
+  
+  // Ticket subscription tracking
+  subscribedTickets: [{
+    ticketId: { type: Schema.Types.ObjectId, required: true },
+    subscribedAt: { type: Date, default: Date.now },
+    lastReadAt: { type: Date },
+    active: { type: Boolean, default: true }
+  }],
+  
+  // Ticket subscription settings
+  ticketSubscriptionSettings: {
+    // Enable/disable all ticket notifications
+    enabled: { type: Boolean, default: true },
+    // Email notification preferences
+    emailNotifications: {
+      enabled: { type: Boolean, default: true },
+      // Notification types for email
+      newTickets: { type: Boolean, default: true },
+      ticketReplies: { type: Boolean, default: true },
+      ticketStatusChanges: { type: Boolean, default: true },
+      ticketAssignments: { type: Boolean, default: true },
+      // Ticket type subscriptions
+      subscribedTypes: {
+        type: [String],
+        enum: ['bug', 'player', 'chat', 'appeal', 'staff', 'support'],
+        default: ['bug', 'player', 'chat', 'appeal', 'staff', 'support']
+      }
+    },
+    // Push notification preferences (for future web push notifications)
+    pushNotifications: {
+      enabled: { type: Boolean, default: false },
+      newTickets: { type: Boolean, default: false },
+      ticketReplies: { type: Boolean, default: false },
+      ticketStatusChanges: { type: Boolean, default: false },
+      ticketAssignments: { type: Boolean, default: false }
+    },
+    // Frequency settings
+    frequency: {
+      type: String,
+      enum: ['immediate', 'hourly', 'daily', 'weekly'],
+      default: 'immediate'
+    }
+  }
 }, { timestamps: true });
 
 export const InvitationSchema = new Schema({
