@@ -57,6 +57,15 @@ export const PunishmentSchema = new Schema({
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
 });
 
+// Define notification schema for type safety
+export const NotificationSchema = new Schema({
+  id: { type: String, required: true },
+  message: { type: String, required: true },
+  type: { type: String, required: true },
+  timestamp: { type: Date, required: true },
+  data: { type: Map, of: mongoose.Schema.Types.Mixed }
+}, { _id: false }); // Disable _id for subdocuments
+
 export const PlayerSchema = new Schema({
   _id: { type: String, required: true },
   minecraftUuid: { type: String, required: true, unique: true },
@@ -65,7 +74,7 @@ export const PlayerSchema = new Schema({
   ipList: [IpAddressSchema],
   ipAddresses: [IpAddressSchema],
   punishments: [PunishmentSchema],
-  pendingNotifications: [{ type: String }],
+  pendingNotifications: [NotificationSchema],
   data: { type: Map, of: mongoose.Schema.Types.Mixed }
 });
 

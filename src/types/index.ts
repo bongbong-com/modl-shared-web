@@ -138,7 +138,7 @@ export interface IPlayer {
   notes: INote[];
   ipList: IIPAddress[];
   punishments: IPunishment[];
-  pendingNotifications: string[];
+  pendingNotifications: any[];
   data: Map<string, any>;
 }
 
